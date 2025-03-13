@@ -117,8 +117,8 @@ class AIChatCog(commands.Cog):
             messages.append(
                 types.UserContent(parts=[
                     types.Part.from_uri(
-                        file_uri: file.url,
-                        mime_type: file.content_type,
+                        file_uri=file.url,
+                        mime_type=file.content_type,
                     )
                 ])
             )
