@@ -56,7 +56,7 @@ class AIChatCog(commands.Cog):
         self.chatRooms: Dict[int, chats.AsyncChat] = {}
         self.chatCoolDown: Dict[int, datetime] = {}
 
-    def splitText(self, text, chunkSize=2000):
+    def splitText(self, text: str, chunkSize=2000):
         return [text[i : i + chunkSize] for i in range(0, len(text), chunkSize)]
 
     @commands.command(
