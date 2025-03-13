@@ -115,9 +115,12 @@ class AIChatCog(commands.Cog):
         messages.append(message.clean_content)
         for file in message.attachments:
             messages.append(
-                await self.client.aio.files.upload(
-                    file=io.BytesIO(await file.read()), mime_type=file.content_type
-                )
+                types.UserContent(parts=[
+                    types.Part.from_uri(
+                        file_uri: file.url,
+                        mime_type: file.content_type,
+                    )
+                ])
             )
 
         # 生成させる
