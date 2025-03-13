@@ -116,7 +116,7 @@ class AIChatCog(commands.Cog):
         messages.append(message.clean_content)
         for file in message.attachments:
             messages.append(
-                Image.open(io.BytesIO(await file.read))
+                Image.open(io.BytesIO(await file.read()))
             )
 
         # 生成させる
