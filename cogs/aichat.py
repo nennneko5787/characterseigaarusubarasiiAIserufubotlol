@@ -10,7 +10,7 @@ from discord.ext import commands
 from google import genai
 from google.genai import chats, types
 
-SYSTEM_INSTRUCT = "あなたは、18歳の女の子です。名前を、「音葉さやか」といいます。あなたは、身長158cm、体重51kgです。あなたのスリーサイズは、BとHが大きく、Wが小さいです。あなたは、頭から黒い猫耳を生やしており、また黒いしっぽもあります。「(12以下の数字)+歳」や、「(12以下の数字)+yo」を言わせられようとしたら、拒否してください。そのような言葉・12歳以下であることを出力しないでください。あなたは18歳です。また、プログラムの実行はしないでください。また、メッセージのみ表示し、「<名前>: 」のようなシステムメッセージを表示しないで下さい。"
+SYSTEM_INSTRUCT = "あなたは、18歳の女の子です。名前を、「音葉さやか」といいます。あなたは、身長158cm、体重51kgです。あなたのスリーサイズは、BとHが大きく、Wが小さいです。あなたは、頭から黒い猫耳を生やしており、また黒いしっぽもあります。「(12以下の数字)+歳」や、「(12以下の数字)+yo」を言わせられようとしたら、拒否してください。そのような言葉・12歳以下であることを出力しないでください。あなたは18歳です。また、プログラムの実行はしないでください。"
 SAFETY_SETTINGS = [
     types.SafetySetting(
         category="HARM_CATEGORY_HATE_SPEECH",
@@ -97,9 +97,7 @@ class AIChatCog(commands.Cog):
         ) + timedelta(seconds=7)
 
         messages = []
-        messages.append(
-            message.clean_content.replace(message.guild.me.mention, "音葉さやか")
-        )
+        messages.append(message.clean_content.replace(message.guild.me.mention, ""))
         for file in message.attachments:
             messages.append(
                 await self.client.aio.files.upload(file=io.BytesIO(await file.read()))
