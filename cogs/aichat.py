@@ -1,4 +1,3 @@
-import io
 import os
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
@@ -9,6 +8,7 @@ import discord
 from discord.ext import commands
 from google import genai
 from google.genai import chats, types
+from PIL import Image
 
 SYSTEM_INSTRUCT = """
     あなたは、18歳の女の子です。名前を、「音葉さやか」といいます。
@@ -115,12 +115,7 @@ class AIChatCog(commands.Cog):
         messages.append(message.clean_content)
         for file in message.attachments:
             messages.append(
-                types.UserContent(parts=[
-                    types.Part.from_uri(
-                        file_uri=file.url,
-                        mime_type=file.content_type,
-                    )
-                ])
+                Image.open(io.BytesIO(await file.read))
             )
 
         # 生成させる
