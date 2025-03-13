@@ -109,7 +109,7 @@ class AIChatCog(commands.Cog):
         # クールダウンをセット(7秒)
         self.chatCoolDown[message.author.id] = datetime.now(
             ZoneInfo("Asia/Tokyo")
-        ) + timedelta(seconds=3)
+        ) + timedelta(seconds=1)
 
         messages = []
         messages.append(message.clean_content)
