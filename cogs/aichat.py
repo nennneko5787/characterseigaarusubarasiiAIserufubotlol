@@ -127,10 +127,12 @@ class AIChatCog(commands.Cog):
         async with message.channel.typing():
             content = await chat.send_message(messages)
 
-        # 2000文字ごとに区切って生成
-        newMessage = None
-        for c in self.splitText(content.text):
-            newMessage = await (newMessage or message).reply(c)
+        # 2000文字ごとに区切って送信
+        # バグってるので廃止
+        # newMessage = None
+        # for c in self.splitText(content.text):
+            # newMessage = await (newMessage or message).reply(c)
+        await message.reply(content.text)
 
 
 async def setup(bot: commands.Bot):
